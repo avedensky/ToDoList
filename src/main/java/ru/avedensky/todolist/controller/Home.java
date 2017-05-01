@@ -1,4 +1,4 @@
-package ru.avedensky.controller;
+package ru.avedensky.todolist;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
