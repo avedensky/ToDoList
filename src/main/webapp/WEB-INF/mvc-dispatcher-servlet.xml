@@ -5,9 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--Пакет где искать контролы-->
-    <context:component-scan base-package="ru.avedensky.controller"/>
-
-    <!--<context:component-scan base-package="ru.avedensky.common.controller"/>-->
+    <context:component-scan base-package="ru.avedensky.todolist.controller"/>
 
     <!--Местоположение jsp файлов-->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -18,11 +16,5 @@
       <value>.jsp</value>
     </property>
   </bean>
-
-    <!--<bean name="/welcome.htm"-->
-          <!--class="ru.avedensky.common.controller.ToDoListController" />-->
-
-    <!--<bean name="/"-->
-          <!--class="ru.avedensky.common.controller.ToDoListController" />-->
 
 </beans>
