@@ -1,5 +1,8 @@
 package ru.avedensky.todolist.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -8,20 +11,25 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "tasks")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Task {
 
     @Id
     @Column (name="id")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @JsonProperty ("id")
     private int id;
 
     @Column (name ="create_dt")
+    @JsonProperty("date")
     private Date date;
 
     @Column (name="description")
+    @JsonProperty("description")
     private String Description;
 
     @Column (name="hasDone")
+    @JsonProperty ("hasdone")
     private Boolean hasDone;
 
     public int getId() {

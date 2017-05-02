@@ -18,6 +18,8 @@
         <mysql.version>6.0.6</mysql.version>
         <jstl.version>1.2</jstl.version>
         <logback.version>RELEASE</logback.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <jackson-databind>2.5.3</jackson-databind>
     </properties>
 
     <!--Эта конструкция позволяет придерживаться одной версии для артефактов спринга.-->
@@ -47,7 +49,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -100,6 +101,28 @@
             <version>${mysql.version}</version>
         </dependency>
 
+        <!--Jackson-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind}</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>com.fasterxml.jackson.datatype</groupId>-->
+            <!--<artifactId>jackson-datatype-hibernate5</artifactId>-->
+            <!--<version>RELEASE</version>-->
+        <!--</dependency>-->
+
+        <!--javax.servlet-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/jstl/jstl -->
         <dependency>
             <groupId>jstl</groupId>
@@ -132,6 +155,7 @@
         <!--<version>2.5</version>-->
         <!--<scope>provided</scope>-->
         <!--</dependency>-->
+
         <!--<dependency>-->
         <!--<groupId>javax.servlet.jsp</groupId>-->
         <!--<artifactId>jsp-api</artifactId>-->
@@ -139,6 +163,8 @@
         <!--<scope>provided</scope>-->
         <!--</dependency>-->
         <!--<dependency>-->
+
+
         <!--<groupId>javax.servlet</groupId>-->
         <!--<artifactId>jstl</artifactId>-->
         <!--<version>1.2</version>-->
