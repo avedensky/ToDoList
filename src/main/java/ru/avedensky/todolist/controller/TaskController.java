@@ -30,27 +30,29 @@ public class TaskController {
     }
 
     /**
-     * Cultivate route /tasks and get list of Tasks as JSON object
+     * GET LIST OF TASK
+     *
      * @return JSON Task Object
      */
     @RequestMapping(value = "tasks", method = RequestMethod.GET)
     public ResponseEntity<List<Task>> listTasks() {
-        logger.debug("List all tasks");
+        logger.info("List all tasks");
         List<Task> tasks = this.taskService.listTasks();
-        if(tasks.isEmpty()){
+        if (tasks.isEmpty()) {
             return new ResponseEntity<List<Task>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
         return new ResponseEntity<List<Task>>(tasks, HttpStatus.OK);
     }
 
     /**
-     * Cultivate route /tasks/{id}  and get Task by id as JSON object
+     * GET TASK BY ID
+     *
      * @param id indentification of task
-     * @return   Return JSON Object task by id
+     * @return Return JSON Object task by id
      */
     @RequestMapping(value = "/task/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Task> getTask(@PathVariable("id") int id) {
-        logger.debug("Get Task by id: "+id);
+        logger.info("Get Task by id: " + id);
         Task task = this.taskService.getTaskById(id);
         if (task == null) {
             return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
@@ -59,39 +61,41 @@ public class TaskController {
     }
 
     /**
-     * Cultivate route /task as POST method and add new object Task to BD
+     * ADD
+     *
      * Example JSON {"description":"This is task","id":0,"date":1493212282000,"hasdone":false}
      *
      * @param task geted task object
      * @return Http status
      */
     @RequestMapping(value = "/task", method = RequestMethod.POST)
-    public ResponseEntity<Void> createTask(@RequestBody Task task){ //,    UriComponentsBuilder ucBuilder) {
-        logger.debug("Add new Task to BD");
+    public ResponseEntity<Void> createTask(@RequestBody Task task) { //,    UriComponentsBuilder ucBuilder) {
+        logger.info("Add new Task to BD");
 
-        if(task.getId() == 0){
+        if (task.getId() == 0) {
             this.taskService.addTask(task);
             return new ResponseEntity<Void>(HttpStatus.CREATED);
-        }else {
+        } else {
             this.taskService.updateTask(task);
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
     }
 
     /**
-     * Cultivate route /task/{id} as PUT method and update object Task in BD
-     * @param id task indentification
+     * UPDATE TASK BY ID
+     *
+     * @param id   task indentification
      * @param task geted task object
      * @return Http status
      */
     @RequestMapping(value = "/task/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Task> updateTask(@PathVariable("id") int id, @RequestBody Task task) {
-        logger.debug("Update Task by id: "+id);
+        logger.info("Update Task by id: " + id);
 
         Task findedTask = this.taskService.getTaskById(id);
 
-        if (findedTask==null) {
-            logger.debug("Task with id: " + id + " not found");
+        if (findedTask == null) {
+            logger.info("Task with id: " + id + " not found");
             return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
         }
 
@@ -104,18 +108,19 @@ public class TaskController {
     }
 
     /**
-     * Cultivate route /task/{id} as DELETE method and delete object Task in BD
+     * DELETE TASK BY ID
+     *
      * @param id task indentification
      * @return Http status
      */
     @RequestMapping(value = "/task/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
-        logger.debug("Deleting Task by id: "+id);
+        logger.info("Deleting Task by id: " + id);
 
         Task findedTask = this.taskService.getTaskById(id);
 
         if (findedTask == null) {
-            logger.debug("Can't to delete. Task with id " + id + " not found");
+            logger.info("Can't to delete. Task with id " + id + " not found");
             return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
         }
 

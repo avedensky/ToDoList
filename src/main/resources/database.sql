@@ -4,10 +4,6 @@ GRANT usage ON *.* TO todouser@localhost identified BY '1234';
 CREATE DATABASE IF NOT EXISTS todo_list CHARACTER SET utf8;
 GRANT ALL privileges ON todo_list.* TO todouser@localhost; USE todo_list;
 
-# Fix Time Zone "Error" in MySQL JDBC Driver 6.0.6
-# http://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue#comment72115441_40245885
-SET GLOBAL time_zone = '+3:00';
-
 -- Create table
 CREATE TABLE IF NOT EXISTS todo_list.tasks (
   id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
