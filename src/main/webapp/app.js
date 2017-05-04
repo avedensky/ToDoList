@@ -5,19 +5,63 @@ var taskManagerModule = angular.module('taskManagerApp', []);
 //     $qProvider.errorOnUnhandledRejections(false);
 // }]);
 
-
-
-
  taskManagerModule.controller("taskManagerCtrl", function ($scope,$http) {
 	var urlBase="http://localhost:8080"; 		
 	$scope.tasks = [];
- 	$http.defaults.headers.post["Content-Type"] = "application/json; charset=utf-8"; 	
+	$scope.taskStatus = undefined; //task show: all, has done, has't done.  (undefined, true, false)
+ 	$http.defaults.headers.post["Content-Type"] = "application/json; charset=utf-8";
+
+
+
+ 	//---------------------  Pagination -------------------------
+ 	$scope.currentPage = 0;
+ 	$scope.tasksPerPage = 5;	
+
+ 	//Count task by value taskStatus
+ 	$scope.countTasksByStatus = function () {
+ 		if ($scope.taskStatus == undefined)
+ 			return $scope.tasks.length;
+
+ 		var cout = 0;
+ 		for (i = 0; i < $scope.tasks.length; ++i) {
+ 			if ($scope.tasks[i].hasdone == $scope.taskStatus){
+ 				cout++;				
+ 			}
+ 		}
+ 		return cout;
+ 	}
+
+ 	$scope.firstPage = function() {
+ 		return $scope.currentPage == 0;
+ 	}
+
+ 	$scope.lastPage = function() {  	
+    	//var lastPageNum = Math.ceil($scope.tasks.length / $scope.tasksPerPage - 1);
+    	var lastPageNum = Math.ceil($scope.countTasksByStatus() / $scope.tasksPerPage - 1);
+    	return $scope.currentPage == lastPageNum;
+    }
+    $scope.numberOfPages = function(){
+    	//return Math.ceil($scope.tasks.length / $scope.tasksPerPage);
+    	return Math.ceil($scope.countTasksByStatus() / $scope.tasksPerPage);
+    }
+
+    $scope.startingTask = function() {
+    	return $scope.currentPage * $scope.tasksPerPage;
+    }
+
+    $scope.pageBack = function() {
+    	$scope.currentPage = $scope.currentPage - 1;
+    }
+
+    $scope.pageForward = function() {
+    	$scope.currentPage = $scope.currentPage + 1;
+    } 	
+    //---------------------------------------------------------------
  
  	//Get all tasks
  	$http.get(urlBase+"/tasks")    	
     	.then(function(response) {
-	        $scope.tasks = response.data;
-    
+	        $scope.tasks = response.data;   
     })
 
     //ADD new task
@@ -44,7 +88,6 @@ var taskManagerModule = angular.module('taskManagerApp', []);
 	    			console.log ("Ok");      
 	      	});
 	    }
-
 	}
 
 	$scope.removeTask = function removeTask(task) {
@@ -59,19 +102,34 @@ var taskManagerModule = angular.module('taskManagerApp', []);
 	      	});
 	}
 
+	$scope.updateTask = function updateTask(id) {
+		var index  = -1;		
 
+    	for (i = 0; i < $scope.tasks.length; ++i) {
+    		if ($scope.tasks[i].id == id){
+    			index = i;
+    			break;
+    		}
+    	}
+    	if (index == -1)
+    		return;
 
-	$scope.updateTask = function updateTask(task) {
-		console.log ("UPDATE task by id: " + task.id + "   Task:" + task.description);
-		console.log ("descrField:" + $scope.descrField)		
-		
-		// console.log ("Send UPDATE request...");
-		// $http.put(urlBase + "/task/" + task.id, task).
-	 //    		then(function(response) {	    			   				    			
-	 //    			console.log ("Ok");      
-	 //      	});
+    	console.log ("UPDATE task by id: " + id + "   Description:" + $scope.tasks[index].description + "  Status=" + $scope.tasks[index].hasdone);
+        console.log ("Task: " + $scope.tasks[index]);
+		console.log ("Send UPDATE request...");
+		$http.put(urlBase + "/task/" + id, $scope.tasks[index]).
+	     		then(function(response) {	    			   				    			
+	     			console.log ("Ok");      
+	  	});
 	}
 
 
-
 }); //taskManagerModule.controller
+
+
+taskManagerModule.filter('startFrom', function(){
+	return function(input, start){
+		start = +start;
+		return input.slice(start);
+	}
+})

@@ -1,0 +1,184 @@
+/*
+#43362A;
+#697153;
+#A0A584;
+#A88B4C;
+#C8B272;
+*/
+/*
+C7AD24
+CCC776
+6283C8
+2B41A7
+1A3431
+*/
+html, body {
+	height: 100%;
+	margin: 0px;	
+	background-color: grey;
+}
+
+h1 {
+	margin: 0px;
+}
+
+.wrapper {
+	top: 0px;	
+	width: 900px;
+	height: 820px;	
+	background:green;
+	position: relative;
+}
+
+header {
+	display: block;
+	height: 100px;	
+  	background: #43362A;			
+}
+
+.header_title {
+	color: #C7AD24;
+	margin: auto;	
+	top: 30px;
+	width: 300px;
+	height: 40px;
+	background-color: #43362A;	
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+
+.main_content {
+	display: block;
+	width: 900px;
+	height: 700px;	
+}
+
+/*-------------------------------------------------------------------------*/
+aside {		
+	width: 200px;
+	height: 700px;
+	background-color: #C8B272;
+	
+	padding: 0px;
+	margin: 0px;
+	overflow: auto;/* Отменяем схлопывающиеся отступы */		
+	float: left; 
+	/*display: inline-block;*/
+
+}
+
+.filtr_block_title {
+
+	/*top: -16px;*/		
+	padding-top: 10px;
+	width: 200px;
+	height: 30px;
+	font-style: bold;
+	color: #1A3431;
+	background-color: #697153;	
+	text-align: center;	
+	position: relative;	
+
+}
+
+.a_switcher:link {
+	text-decoration: none;
+}
+
+.filtr_control_block {
+	top: 20px;
+	left: 10px;	
+	width: 180px;
+	height: 150px;
+	background-color: #C8B272;	
+	text-align: center;
+	position: relative;	
+}
+/*-------------------------------------------------------------------------*/
+
+article {
+	width: 700px;
+	height: 700px;
+	background-color: #CCC776;
+	display: inline-block;	
+}
+
+
+.task_list_area {
+	/*clear: left;*/
+	top:10px;
+	left: 10px;
+	width: 680px;
+	height: 470px;
+	position: relative;	
+	background-color: #A0A584;	
+}
+
+.task_list_content {
+	padding:10px;	
+	/*border: 1px red solid;*/
+}
+
+.task {	
+	padding-top: 50px;
+}
+
+
+.pagination_area {
+	left: 10px;
+	top:  10px;	
+	width: 680px;
+	height: 40px;
+	position: relative;	
+	/*border: 1px red solid;*/
+	background-color: #A0A584;
+	text-align: center;
+
+}
+
+
+.additional_task_area {	
+	left: 10px;
+	top: 60px;	
+	width: 680px;
+	height: 120px;
+	background-color: #A0A584;	
+	position: relative;	
+}
+
+
+.additional_task_title {	
+	padding-top: 10px;
+	height: 30px;
+	font-style: bold;
+	color: #1A3431;
+	background-color: #697153;		
+	position: relative;
+	text-align: center;
+
+
+}
+
+.additional_task_form {
+	margin: 20px;	
+	width: 640px;
+	height: 30px;
+	padding: 0px;
+	position: relative;
+}
+/*-------------------------------------------------------------------------*/
+
+
+
+footer {
+	width: 900px;
+	height: 20px;
+	bottom: 0px;
+	background-color: #43362A;	
+	text-align: center;
+}
+
+
+

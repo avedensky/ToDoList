@@ -2,76 +2,82 @@
 <!DOCTYPE html>
 <html ng-app="taskManagerApp">
 <head>
-	<meta charset="utf-8">
-	<title>Main Page</title>	
-	<script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	<script defer src="./app.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <title>Main Page</title>  
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  
+    <script defer src="./app.js"></script>
 </head>
-<body>
-	<div ng-controller="taskManagerCtrl">
+<body>  
+  <!--   <p><a href="http://www.ya.ru">yandex</a></p> -->
 
-		<!-- <div id="task-panel" class="fadein fadeout showpanel panel"  ng-show="toggle"> 
-  			<div class="panel-heading">
-   				<i class="panel-title-icon"></i>
-   				<span class="panel-title">Задания</span>
-   				<div class="panel-heading-controls">
-    			<button ng-click="toggle = !toggle">Новое задание</button>
-    
-   			</div>
-  		</div> -->
+    <div class=wrapper>
 
-<!-- 	<div class="panel-heading">
-   		<i class="panel-title-icon"></i>
-   		<span class="panel-title">Задания</span>
-   		<div class="panel-heading-controls">    		
-   		</div>
-   	</div> -->
+        <header>
+            <div class="header_title">
+                <h1>Список дел</h1>
+            </div>
+        </header>
 
-	<div>
-    <input type="checkbox" name="hasdone" ng-model="tempHasDone">
-		<input type="text" size ="80" name="description" ng-model="tempDescription">
-		<button ng-click="addNewTask()">Новое задание</button>    
-	</div>
-	<br>
-	<br>
+        <div class="main_content" ng-controller="taskManagerCtrl">
+            <aside>       
+                <div class="filtr_block_title">Фильтр</div>            
 
-	<div ng-repeat="task in tasks">
-		<input id="task.id" type="checkbox" value="{{task.id}}" ng-checked="{{task.hasdone}}" ng-click="toggleSelection(task.id)">
-		<input id="task.id" type="text" size ="80" ng-init="descrField=task.description" ng-model="descrField">
-		<button ng-click="removeTask(task)">Delete</button>
-    <button ng-click="updateTask(task)">Update</button>
-	</div> 
-
-	<!-- <div id="add-task-panel" ng-hide="toggle">
-  		<div>
-   			<span>Add Task</span>
-   			<div>
-    			<button ng-click="toggle = !toggle">Show All Tasks</button>
-   			</div>
-  		</div>
-  		<div>
-   			<div>
-    			<table>
-     			<tr>
-      				<td>Task Description:</td>
-      				<td><input type="text" ng-model="taskDesc"/></td>
-     			</tr>     		
-     			<tr>
-				<td><button ng-click="addTask()" class="btn-panel-big">Add New Task</button></td>
-     			</tr>
-    			</table>        
-   			</div>
-  		</div>
-  	</div> -->
+                <div class="filtr_control_block">
+                    <p><a class="a_switcher" href ng-click="taskStatus=undefined">Все</a></p>
+                    <p><a class="a_switcher" href ng-click="taskStatus=true">Выполненые</a></p>
+                    <p><a class="a_switcher" href ng-click="taskStatus=false">Не выполненые</a></p>
+                </div>
+            </aside>    
 
 
-	
+            <article>
+                <!-- <div style="clear: left"></div> -->
+                <div class="task_list_area"> 
+                    <div class="task_list_content">
 
-     	<!-- <input id="{{task.taskId}}" type="checkbox" value="{{task.taskId}}" ng-checked="selection.indexOf(task.taskId) > -1" ng-click="toggleSelection(task.taskId)" />
-       <label for="{{task.taskId}}"></label>  -->
+                        <div ng-repeat="task in tasks | filter : task.hasdone=taskStatus | startFrom: startingTask() | limitTo: tasksPerPage">
 
-    </div>
+                            <div class="task">
+                                <input id="task.id" type="checkbox" size ="50" ng-model="task.hasdone" ng-click="updateTask(task.id)">
+                                <input id="task.id" type="text" size ="50" ng-model="task.description" ng-blur="updateTask(task.id)">
+                                <button ng-click="removeTask(task)">Удалить</button>
+                            </div>
+                        </div>
+                    </div> <!-- task_list_content -->
 
+                </div> <!-- task_list_area -->
+
+
+                <!-- <div id="pagination"> -->
+                <div class="pagination_area">
+                    <button ng-disabled="firstPage()" ng-click="pageBack()">Назад</button>
+                    <span>{{currentPage+1}} из {{numberOfPages()}}</span>
+                    <button ng-disabled="lastPage()" ng-click="pageForward()">Вперед</button>
+                </div>
+
+
+
+
+                
+
+                <div class=additional_task_area>
+                    <div class=additional_task_title>Добавить новое задвние</div>
+
+                    <div class=additional_task_form>  
+                        <input type="checkbox" name="hasdone" ng-model="tempHasDone">
+                        <input type="text" size ="50" name="description" ng-model="tempDescription">
+                        <button ng-click="addNewTask()">Добавить</button>
+                    </div>
+
+                </div>
+            </article>
+        </div> <!-- main_content -->
+
+        <footer>
+            Copyleft AVedensky 2017
+        </footer>
+    </div> <!-- wrapper -->
 </body>
 </html>
+
