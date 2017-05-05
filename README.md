@@ -1,5 +1,5 @@
 # ToDoList
-![Main Window](https://github.com/avedensky/ToDoList/raw/master/img/ToDoList_scr.png)<br>
+![Main Window](https://github.com/avedensky/ToDoList/raw/master/doc/img/ToDoList_scr.png)<br>
 
 <b>To-Do list is a web CRUD application</b>, write on java, using REST Technology.<br>
 Backend base on: Spring, Hibernate<br>

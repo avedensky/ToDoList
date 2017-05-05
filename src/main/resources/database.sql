@@ -15,7 +15,10 @@ CREATE TABLE IF NOT EXISTS todo_list.tasks (
 
 --  Fill data
 INSERT INTO todo_list.tasks VALUES (1, 20170426161122, 'Завести репозиторий на GIT', 1);
-INSERT INTO todo_list.tasks VALUES (2, 20170426171537, 'Создать проект на Maven', 1);
-INSERT INTO todo_list.tasks VALUES (3, 20170426182121, 'Запустить и проверить что все работает', 1);
-INSERT INTO todo_list.tasks VALUES (4, 20170426194152, 'Добавить gitignore  файл в проектную директорию', 1);
-INSERT INTO todo_list.tasks VALUES (5, 20170426194152, 'Подвязать локальный проект к репозиторию', 1);
+INSERT INTO todo_list.tasks VALUES (2, 20170429171537, 'Создать проект на Maven', 1);
+INSERT INTO todo_list.tasks VALUES (3, 20170429182121, 'Запустить и проверить что все работает', 1);
+INSERT INTO todo_list.tasks VALUES (4, 20170426194152, 'Добавить gitignore  файл в проектную директорию', 0);
+INSERT INTO todo_list.tasks VALUES (5, 20170426194253, 'Подвязать локальный проект к репозиторию', 1);
+INSERT INTO todo_list.tasks VALUES (6, 20170501194454, 'Сделать красиво', 0);
+INSERT INTO todo_list.tasks VALUES (7, 20170502194454, 'Сделать скриншоты', 0);
+INSERT INTO todo_list.tasks VALUES (8, 20170503194454, 'Выложить ссылку', 0);

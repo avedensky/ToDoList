@@ -4,13 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>Main Page</title>  
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./resources/css/style.css">
     <script defer src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  
-    <script defer src="./app.js"></script>
+    <script defer src="./resources/js/app.js"></script>
 </head>
 <body>  
-  <!--   <p><a href="http://www.ya.ru">yandex</a></p> -->
-
     <div class=wrapper>
 
         <header>
@@ -75,7 +73,7 @@
         </div> <!-- main_content -->
 
         <footer>
-            Copyleft AVedensky 2017
+        	<a href="https://github.com/avedensky/ToDoList">Copyleft AVedensky 2017</a>            
         </footer>
     </div> <!-- wrapper -->
 </body>
