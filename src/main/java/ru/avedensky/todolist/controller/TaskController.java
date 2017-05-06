@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -69,15 +70,21 @@ public class TaskController {
      * @return Http status
      */
     @RequestMapping(value = "/task", method = RequestMethod.POST)
-    public ResponseEntity<Void> createTask(@RequestBody Task task) { //,    UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Task> createTask(@RequestBody Task task) { //,    UriComponentsBuilder ucBuilder) {
         logger.info("Add new Task to BD");
 
         if (task.getId() == 0) {
-            this.taskService.addTask(task);
-            return new ResponseEntity<Void>(HttpStatus.CREATED);
+            int id = this.taskService.addTask(task);
+
+            Task storedTask = this.taskService.getTaskById(id);
+            if (storedTask == null) {
+                return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<Task>(task, HttpStatus.OK);
+
         } else {
             this.taskService.updateTask(task);
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            return new ResponseEntity<Task>(HttpStatus.CONFLICT);
         }
     }
 

@@ -22,10 +22,13 @@ public class TaskDaoImpl implements TaskDao {
         this.sessionFactory = sessionFactory;
     }
 
-    public void addTask(Task task) {
+    public int addTask(Task task) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(task);
         logger.info("Task successfully saved. Task details: " + task);
+        session.persist(task);
+        session.flush();
+        return task.getId();
+
     }
 
     public void updateTask(Task task) {

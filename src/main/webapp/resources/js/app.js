@@ -17,6 +17,7 @@ var taskManagerModule = angular.module('taskManagerApp', []);
  	$scope.currentPage = 0;
  	$scope.tasksPerPage = 5;	
 
+
  	//Count task by value taskStatus
  	$scope.countTasksByStatus = function () {
  		if ($scope.taskStatus == undefined)
@@ -30,10 +31,12 @@ var taskManagerModule = angular.module('taskManagerApp', []);
  		}
  		return cout;
  	}
+ 	
 
  	$scope.firstPage = function() {
  		return $scope.currentPage == 0;
  	}
+
 
  	$scope.lastPage = function() {  	
     	//var lastPageNum = Math.ceil($scope.tasks.length / $scope.tasksPerPage - 1);
@@ -50,11 +53,14 @@ var taskManagerModule = angular.module('taskManagerApp', []);
     }
 
     $scope.pageBack = function() {
-    	$scope.currentPage = $scope.currentPage - 1;
+    	if ($scope.currentPage > 0) //2017-05-05 change start
+    		$scope.currentPage = $scope.currentPage - 1;
     }
 
     $scope.pageForward = function() {
-    	$scope.currentPage = $scope.currentPage + 1;
+    	console.log ($scope.currentPage+" "+$scope.numberOfPages());
+    	if ($scope.currentPage < $scope.numberOfPages()-1) //2017-05-05 change start
+    		$scope.currentPage = $scope.currentPage + 1;    	
     } 	
     //---------------------------------------------------------------
  
@@ -67,17 +73,17 @@ var taskManagerModule = angular.module('taskManagerApp', []);
     //ADD new task
     //Example {"description":"This is task","id":0,"date":1493212282000,"hasdone":false}
 	$scope.addNewTask = function addTask() {		
-  		if($scope.tempDescription==""){
+  		if($scope.form_add_description==""){
    			alert("Добавление новой задачи: поле с описанием задачи не может быть пустым");
 	  	} else {
-	  		if ($scope.tempHasDone == undefined)
-	  			$scope.tempHasDone = false
+	  		if ($scope.form_add_chk == undefined)
+	  			$scope.form_add_chk = false
 	  		
 	  		var newTask = {	  			       
-	        	"description": $scope.tempDescription,
+	        	"description": $scope.form_add_description,
 	        	"id": 0,
 	        	"date": new Date().getTime(),
-	        	"hasdone": $scope.tempHasDone,      	
+	        	"hasdone": $scope.form_add_chk,      	
 	    	}
 	    	
 	    	console.log ("ADD new task:", newTask);	    	
@@ -85,8 +91,10 @@ var taskManagerModule = angular.module('taskManagerApp', []);
 	    	$http.post(urlBase + "/task", newTask).
 	    		then(function(response) {	    			
 	    			$scope.tasks.push (newTask);
-	    			console.log ("Ok");      
+	    			console.log ("Ok"); 	    			     
 	      	});
+	    		
+	    	$scope.currentPage = $scope.numberOfPages()-1;
 	    }
 	}
 
@@ -102,7 +110,7 @@ var taskManagerModule = angular.module('taskManagerApp', []);
 	      	});
 	}
 
-	$scope.updateTask = function updateTask(id) {
+	$scope.updateTask = function updateTask(el_type, id) {
 		var index  = -1;		
 
     	for (i = 0; i < $scope.tasks.length; ++i) {
@@ -113,6 +121,9 @@ var taskManagerModule = angular.module('taskManagerApp', []);
     	}
     	if (index == -1)
     		return;
+
+    	if (el_type == 'checkbox')
+    		$scope.tasks[index].hasdone = $scope.tasks[index].hasdone ? false : true;
 
     	console.log ("UPDATE task by id: " + id + "   Description:" + $scope.tasks[index].description + "  Status=" + $scope.tasks[index].hasdone);
         console.log ("Task: " + $scope.tasks[index]);

@@ -12,6 +12,11 @@ CCC776
 2B41A7
 1A3431
 */
+@font-face {
+    font-family: BadScript; 
+    src: url("./resources/font/BadScript-Regular.ttf"); /* Путь к файлу со шрифтом */
+   }
+
 html, body {
 	height: 100%;
 	margin: 0px;	
@@ -59,7 +64,7 @@ header {
 aside {		
 	width: 200px;
 	height: 700px;
-	background-color: #C8B272;
+	background-color: #A0A584; /*#C8B272;*/	
 	
 	padding: 0px;
 	margin: 0px;
@@ -92,7 +97,7 @@ aside {
 	left: 10px;	
 	width: 180px;
 	height: 150px;
-	background-color: #C8B272;	
+	background-color: #A0A584; /*#C8B272;*/	
 	text-align: center;
 	position: relative;	
 }
@@ -101,47 +106,141 @@ aside {
 article {
 	width: 700px;
 	height: 700px;
-	background-color: #CCC776;
+	background-color: #C8B272;
 	display: inline-block;	
 }
 
-
+/*----------------------------- task_list_area ------------------------------------*/
 .task_list_area {
 	/*clear: left;*/
 	top:10px;
 	left: 10px;
 	width: 680px;
-	height: 470px;
+	height: 530px;
 	position: relative;	
-	background-color: #A0A584;	
+	background-color: #CCC776; /*#A0A584;	*/
 }
 
 .task_list_content {
-	padding:10px;	
-	/*border: 1px red solid;*/
+	top: 20px;
+	position: relative;		
 }
 
+/*2017-05-05 change start*/
 .task {	
-	padding-top: 50px;
+	left: 10px;
+	width: 660px;	
+	height: 48px;	
+	margin-bottom: 40px;
+	position: relative;
 }
 
+.task_checkbox_checked {
+	width: 48px;
+	height: 48px;	
+	background-image: url("./resources/img/ready.png");
+	cursor: pointer;	
+	float: left;	
+}
 
-.pagination_area {
-	left: 10px;
-	top:  10px;	
-	width: 680px;
-	height: 40px;
+.task_checkbox_unchecked {
+	width: 48px;
+	height: 48px;	
+	background-image: url("./resources/img/cross.png");
+	cursor: pointer;		
+	float: left;	
+}
+
+.task_input_field {
+	left: 20px;
+	top: 5px;
+	width: 550px;
+	height: 30px;
 	position: relative;	
-	/*border: 1px red solid;*/
-	background-color: #A0A584;
-	text-align: center;
+	text-align: left;	
+	float: left;
+}
 
+/*----- config input field ---------*/
+.task_list_area input[type=text]:hover { 
+ /*border: 2px solid orange;*/
+ color: blue;
+ cursor: pointer;
+}
+
+.task_list_area input[type=text]:focus { 
+ background: #f8f8f8; 
+ border: 1px solid #999;
+ font-family: Verdana, Arial, Helvetica, sans-serif;
+ font-size: 12pt;
+ font-style:normal;
+ border: 1px blue solid;
+}
+
+.task_list_area input[type=text] { 
+ background: #CCC776;  
+ border: 0px;
+ font-family: BadScript, 'Comic Sans MS', cursive;
+ font-size: 15pt; 
+}
+/*----------------------------------*/
+
+.task_button_trash {
+	left: 10px;
+	width: 48px;
+	height: 48px;
+	position: relative;	
+	background-image: url("/img/trash48.png");
+	cursor: pointer;		
+	float: left;	
+}
+
+/*end*/
+/*clear: left;*/
+/*----------------------------- pagination_area ------------------------------------*/
+.pagination_area {
+	left:250px;
+	top:  -50px;	
+	width: 200px;
+	height: 48px;
+	position: relative;		
+	background-color: #CCC776;	
 }
 
 
-.additional_task_area {	
+.pagination_to_left_button {
+	width: 48px;
+	height: 48px;	
+	background-image: url("/img/to_left48.png");
+	cursor: pointer;	
+	float: left;
+}
+
+.pagination_text {
 	left: 10px;
-	top: 60px;	
+	top: 10px;
+	width: 75px;
+	height: 30px;			
+	text-align: center;	
+	position: relative;
+	float: left;
+}
+
+.pagination_to_right_button {
+	left: 20px;
+	width: 48px;
+	height: 48px;	
+	background-image: url("/img/to_right48.png");
+	cursor: pointer;	
+	position: relative;	
+	float: left;	
+}
+
+
+/*----------------------------- additional_task_area ------------------------------------*/
+.add_task_area {	
+	left: 10px;
+	top: -10px;	
 	width: 680px;
 	height: 120px;
 	background-color: #A0A584;	
@@ -149,7 +248,7 @@ article {
 }
 
 
-.additional_task_title {	
+.add_task_title {	
 	padding-top: 10px;
 	height: 30px;
 	font-style: bold;
@@ -157,19 +256,38 @@ article {
 	background-color: #697153;		
 	position: relative;
 	text-align: center;
-
-
 }
 
-.additional_task_form {
-	margin: 20px;	
+.add_task_content {
+	top: 10px;
+	left: 10px;
+	
 	width: 640px;
-	height: 30px;
+	height: 48px;
 	padding: 0px;
 	position: relative;
+	/*background: grey;*/
 }
-/*-------------------------------------------------------------------------*/
 
+
+.form_add_input {
+	left: 20px;
+	top: 10px;
+	width: 500px;
+	height: 30px;
+	position: relative;	
+	text-align: left;	
+	float: left;
+}
+
+.form_add_button {
+	left: 600px;
+	width: 48px;
+	height: 48px;
+	position: relative;	
+	background-image: url("/img/plus.png");
+	cursor: pointer;		
+}
 
 
 footer {

@@ -20,9 +20,8 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Transactional
-    public void addTask(Task task) {
-        this.taskDao.addTask(task);
-
+    public int addTask(Task task) {
+        return this.taskDao.addTask(task);
     }
 
     @Transactional
