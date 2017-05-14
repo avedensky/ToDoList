@@ -7,3 +7,6 @@ src/main/resources
 По умолчанию проект подключается к БД  с паролем root/root
 Это поведение можно изменить в файле:
 src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml
+
+
+Для запуска и отладки рекомендую IDEA.
