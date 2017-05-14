@@ -12,10 +12,12 @@
     <logger name="ru.avedensky.todolist" level="info"
             additivity="false">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="application" />
     </logger>
 
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
+        <appender-ref ref="application" />
     </root>
 
 </configuration>

@@ -27,7 +27,7 @@
                   value="jdbc:mysql://localhost:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;serverTimezone=Europe/Moscow"/>
 
         <property name="username" value="root"/>
-        <property name="password" value="root01"/> <!--TODO - Change to root-->
+        <property name="password" value="root"/> <!--TODO - Change to root-->
     </bean>
 
 
