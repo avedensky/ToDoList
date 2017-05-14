@@ -24,10 +24,10 @@
           destroy-method="close">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/todo_list?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;serverTimezone=Europe/Moscow"/>
+                  value="jdbc:mysql://localhost:3306/test?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;serverTimezone=Europe/Moscow"/>
 
         <property name="username" value="root"/>
-        <property name="password" value="root01"/>
+        <property name="password" value="root01"/> <!--TODO - Change to root-->
     </bean>
 
 
